@@ -1,0 +1,25 @@
+
+@font-face {
+    font-family: 'Caveat';
+    src: url("./assets/fonts/Caveat-VariableFont_wght.ttf");
+  }
+@font-face {
+    font-family: 'Caveat Brush';
+    src: url("./assets/fonts/CaveatBrush-Regular.ttf");
+}
+@font-face {
+    font-family: 'Cabin';
+    src: url("./assets/fonts/Cabin-Regular.ttf");
+}
+body {
+  margin: 0 auto;
+  min-height: 100vh;
+  font-family: 'Caveat Brush';
+  background-color: #101116;
+  color: #ffff;
+}
+
+.hero{
+  background-image: url("./assets/img/bg-p.jpg");
+  background-size: cover;
+}
