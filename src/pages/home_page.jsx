@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import EasyOrderIcon from '../assets/icons/easy.png'
 import RestaurantCard from '../components/restaurants/card_restaurant'
+import ListRestaurant from '../components/restaurants/list_restaurants'
 
 const HomePage = () => {
   {/* Pendiente por hacer el fetch a la api para obtener la información*/}
@@ -26,7 +27,7 @@ const HomePage = () => {
       </div>
       <section className='p-10'>
         <h2 className='text-center text-4xl my-10'>Restaurantes</h2>
-        <RestaurantCard data={data}/>
+        <ListRestaurant />
       </section>
     </div>
   )
