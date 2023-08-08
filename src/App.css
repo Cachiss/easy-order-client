@@ -23,3 +23,10 @@ body {
   background-image: url("./assets/img/bg-p.jpg");
   background-size: cover;
 }
+
+@media (min-width: 800px){
+  .hero{
+    background-image: url("./assets/img/bg.jpg");
+    background-size: cover;
+  }
+}
