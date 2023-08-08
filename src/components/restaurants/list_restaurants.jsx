@@ -3,7 +3,7 @@ import RestaurantCard from "./card_restaurant";
 
 const ListRestaurant = () => {  
 	const [restaurants, setRestaurants] = useState([]);
-
+	
 	useEffect(() => {
 		//se hace la petición a la API
 
@@ -13,7 +13,7 @@ const ListRestaurant = () => {
 
 	return (
   <div className="flex flex-col">
-		{!restaurants ?
+		{restaurants ?
 			restaurants.map((data)=>{
 				return(
 					<div className="mb-3" key={data.index}>
