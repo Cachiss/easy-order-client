@@ -9,7 +9,7 @@ const server_url = import.meta.env.VITE_API_URL;
 
 const LoginUser = () => {
   const navigate = useNavigate();
-  const {setIsLogged} = useAuth();
+  const {login} = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null)
@@ -25,7 +25,7 @@ const LoginUser = () => {
     try {
       const response = await axios.post(`${server_url}/users/login`, { email, password });
       if(response.data.token){
-        setIsLogged(true)
+        login()
         navigate('/')
       }
   } catch (error) {
