@@ -20,6 +20,7 @@ export default function ShopCarComponent() {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
+
   return (
     <div>
       <IconButton  onClick={handleClick}>
@@ -46,6 +47,7 @@ export default function ShopCarComponent() {
                 No hay productos en el carrito
               </Typography>
           }
+          <Button className='bg-orange text-white rounded-md w-80 h-10 mt-5 text-xl'>Realizar pedido</Button>
         </div>
       </Popover>
     </div>

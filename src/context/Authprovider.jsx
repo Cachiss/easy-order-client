@@ -4,20 +4,26 @@ const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
     const [isLogged, setIsLogged] = useState(null);
+    const logout = () => {
+        localStorage.removeItem('isLogged');
+        setIsLogged(false);
+        }
+    const login = () => {
+        localStorage.setItem('isLogged', true);
+        setIsLogged(true);
+
+    }
     useEffect(() => {
         if (localStorage.getItem('isLogged')) {
-            setIsLogged(true);
+            if(!isLogged) setIsLogged(true);
         } else {
             setIsLogged(false);
         }
       }, []);
     
-      const logout = () => {
-        localStorage.removeItem('isLogged');
-        setIsLogged(false);
-        }
+
     return (
-        <AuthContext.Provider value={{isLogged, setIsLogged, logout}}>
+        <AuthContext.Provider value={{isLogged, setIsLogged, logout, login}}>
             {children}
         </AuthContext.Provider>
     )

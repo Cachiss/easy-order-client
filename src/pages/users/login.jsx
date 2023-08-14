@@ -48,6 +48,7 @@ const LoginUser = () => {
           {error && <p className='text-red-500 mt-5'>{error}</p>}
           <button className="bg-orange text-white rounded-md w-80 h-10 mt-5 text-xl">Iniciar sesión</button>
         </form>
+        <p className='mt-5'>¿No tienes cuenta? <a href='/user/register' className='text-orange'>Regístrate</a></p>
       </div>
   </div>
   )

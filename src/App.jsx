@@ -13,6 +13,7 @@ import LoginUser from './pages/users/login'
 import IndexRestaurant from './pages/restaurants'
 import Footer from './components/footer/footer'
 import NavbarComponent from './components/navbar';
+import SeeOrders from './pages/restaurants/see_orders'
 function App() {
 
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/admin/login' element={<LoginAdmin />} />
         {/* Dynamic page restaurant*/}
         <Route path='/restaurant/:name' element={<IndexRestaurant/>} />
+        <Route path='/restaurant/:name/orders' element={<SeeOrders/>} />
       </Routes>
         <Footer />
     </BrowserRouter>

@@ -4,15 +4,18 @@ import { loginRestaurant, getRestaurants } from '../../api/restaurant.api'
 import axios from 'axios'
 import {Input} from "@nextui-org/react";
 import EasyOrderIcon from '../../assets/icons/easy.png'
-
+import { useNavigate } from 'react-router-dom';
+import { Alert } from '@mui/material';
 const server_url = import.meta.env.VITE_API_URL;
 
 const RegisterUser = () => {
+  const navigate = useNavigate();
   const {token, setToken} = useAuth();
   const [name, setName] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null)
+  const [registered, setRegistered] = useState(false)
   const refImage = useRef();
   useEffect(() => {
     if(error){
@@ -21,6 +24,8 @@ const RegisterUser = () => {
       }, 3000);
     }
   }, [error]);
+
+
   const handleSubmit = async (e) => {
 /*    e.preventDefault();
     try {
@@ -32,6 +37,19 @@ const RegisterUser = () => {
       setError(error.response.data.message)
   }*/
   e.preventDefault()
+  axios.post(`${server_url}/users`, {name, email, password})
+  .then((response) => {
+    setRegistered(false)
+    setTimeout(() => {
+      setRegistered(false)
+    }, 3000);
+  })
+  .then(() => {
+    navigate('/user/login')
+  })
+  .catch((error) => {
+    console.log(error)
+  })
   console.log(refImage.current.value)
     
   }
@@ -49,6 +67,7 @@ const RegisterUser = () => {
           {error && <p className='text-red-500 mt-5'>{error}</p>}
           <button className="bg-orange text-white rounded-md w-80 h-10 mt-5 text-xl">Registrar</button>
         </form>
+        {registered && <Alert severity="success">Usuario registrado</Alert>}
       </div>
   </div>
   )
