@@ -1,23 +1,23 @@
 import { useState, useEffect } from "react"
 import RestaurantCard from "./card_restaurant";
+import { getRestaurants } from "../../api/restaurant.api";
 
 const ListRestaurant = () => {  
 	const [restaurants, setRestaurants] = useState([]);
 	
 	useEffect(() => {
-		//se hace la petición a la API
-
-		//axios get
-			//setRestaurants(data)
-	}, [])
-
+		getRestaurants()
+		.then((response) => {
+		  setRestaurants(response.data.restaurants)
+		})
+	  }, [])
 	return (
   <div className="flex flex-col">
 		{restaurants ?
-			restaurants.map((data)=>{
+			restaurants.map((data, index)=>{
 				return(
-					<div className="mb-3" key={data.index}>
-						<RestaurantCard data={data} />
+					<div className="mb-3">
+						<RestaurantCard data={data} key={index} />
 					</div>
 				);
 			})

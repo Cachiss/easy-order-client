@@ -4,31 +4,22 @@ const server_url = import.meta.env.VITE_API_URL;
 
 export const getRestaurants = async () => {
     //127.0.0.1:3000/restaurants
-  try {
-    const response = await axios.get(`${server_url}/restaurants`);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+    return await axios.get(`${server_url}/restaurants`);
 }
 
 export const getRestaurant = async (name) => {
     //127.0.0.1:3000/restaurants/OTRO
-    try {
-        const response = await axios.get(`${server_url}/restaurants/${name}`);
-        return response.data;
-    } catch (error) {
-        console.error(error);
-    }
+    return await axios.get(`${server_url}/restaurants/${name}`);
+
 }
 
 export const loginRestaurant = async (email, password) => {
     //127.0.0.1:3000/restaurants/login
     try {
         const response = await axios.post(`${server_url}/restaurants/login`, { email, password });
-        return response.data;
+        return response;
     } catch (error) {
-        console.error(error);
+        return error;
     }
 }
 

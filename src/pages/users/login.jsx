@@ -4,11 +4,12 @@ import { loginRestaurant, getRestaurants } from '../../api/restaurant.api'
 import axios from 'axios'
 import {Input} from "@nextui-org/react";
 import EasyOrderIcon from '../../assets/icons/easy.png'
-
+import { useNavigate } from 'react-router-dom';
 const server_url = import.meta.env.VITE_API_URL;
 
-const LoginRestaurant = () => {
-  const {token, setToken} = useAuth();
+const LoginUser = () => {
+  const navigate = useNavigate();
+  const {setIsLogged} = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null)
@@ -22,9 +23,11 @@ const LoginRestaurant = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${server_url}/restaurants/login`, { email, password });
-      console.log(response)
-      setToken(response.data.token)
+      const response = await axios.post(`${server_url}/users/login`, { email, password });
+      if(response.data.token){
+        setIsLogged(true)
+        navigate('/')
+      }
   } catch (error) {
       console.log("error :(", error)
       setError(error.response.data.message)
@@ -39,7 +42,7 @@ const LoginRestaurant = () => {
         <img src={EasyOrderIcon} alt={'Easy Order Icon'} className='w-2/3 lg:w-1/4'/>
 
         <h1 className="text-4xl font-bold ">Inicia sesión</h1>
-        <form className="flex flex-col justify-center items-center mt-10 text-black" onSubmit={handleLogin}>
+        <form className="flex flex-col justify-center items-center mt-10" onSubmit={handleLogin}>
           <Input type="email" label="Email" onChange={(e) => setEmail(e.target.value)} className='text-xl' />
           <Input type="password" label="Contraseña" onChange={(e) => setPassword(e.target.value)} className='mt-6 text-xl' />
           {error && <p className='text-red-500 mt-5'>{error}</p>}
@@ -50,4 +53,4 @@ const LoginRestaurant = () => {
   )
 }
 
-export default LoginRestaurant
+export default LoginUser
