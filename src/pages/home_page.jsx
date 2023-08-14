@@ -3,6 +3,7 @@ import {Helmet} from "react-helmet";
 import EasyOrderIcon from '../assets/icons/easy.png'
 import RestaurantCard from '../components/restaurants/card_restaurant'
 import ListRestaurant from '../components/restaurants/list_restaurants'
+import Footer from '../components/footer/footer';
 
 const HomePage = () => {
   {/* Pendiente por hacer el fetch a la api para obtener la información*/}
@@ -28,6 +29,7 @@ const HomePage = () => {
         <h2 className='text-center text-4xl my-10'>Restaurantes</h2>
         <ListRestaurant />
       </section>
+      <Footer />
     </div>
   )
 }
