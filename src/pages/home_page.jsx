@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react'
+import {Helmet} from "react-helmet";
 import EasyOrderIcon from '../assets/icons/easy.png'
 import RestaurantCard from '../components/restaurants/card_restaurant'
 import ListRestaurant from '../components/restaurants/list_restaurants'
 
 const HomePage = () => {
   {/* Pendiente por hacer el fetch a la api para obtener la información*/}
-
   return (
     <div className='max-w-3xl md:w-screen md:max-w-none mx-auto'>
+      <Helmet>
+        <title>Inicio</title>
+      </Helmet>
       <section className='hero'>
         <div className='container mx-auto flex flex-col items-center justify-center p-10'>
           <img src={EasyOrderIcon} alt={'Easy Order Icon'} className='w-2/3 lg:w-1/4'/>
