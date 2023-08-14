@@ -2,9 +2,12 @@ import * as React from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
+import { IconButton } from '@mui/material';
+import { ShoppingCart } from '@mui/icons-material';
+import useShopCar from '../hooks/useShopCar';
 export default function ShopCarComponent() {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const {addProduct, shopCar} = useShopCar();
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -19,9 +22,9 @@ export default function ShopCarComponent() {
 
   return (
     <div>
-      <Button aria-describedby={id} variant="contained" onClick={handleClick}>
-        Open Popover
-      </Button>
+      <IconButton  onClick={handleClick}>
+        <ShoppingCart color='warning' />
+      </IconButton>
       <Popover
         id={id}
         open={open}
@@ -32,7 +35,18 @@ export default function ShopCarComponent() {
           horizontal: 'left',
         }}
       >
-        <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+        <div className='bg-slate[700]'>
+          {shopCar.length > 0 ? shopCar.map((product) => {
+            return (
+              <Typography sx={{ p: 2 }} key={product.id}>
+                {product.name}
+              </Typography>
+            )
+            }) : <Typography sx={{ p: 2 }} >
+                No hay productos en el carrito
+              </Typography>
+          }
+        </div>
       </Popover>
     </div>
   );
